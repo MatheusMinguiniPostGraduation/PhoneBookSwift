@@ -7,18 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		869B9A7A2335AAF70003BC7D /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B9A792335AAF70003BC7D /* MainTableView.swift */; };
-		869B9A7C2335ABBA0003BC7D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869B9A7B2335ABBA0003BC7D /* MainViewController.swift */; };
 		86B770B5232C5282007C71C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B770B4232C5282007C71C8 /* AppDelegate.swift */; };
 		86B770B7232C5282007C71C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B770B6232C5282007C71C8 /* ViewController.swift */; };
 		86B770BA232C5282007C71C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B770B8232C5282007C71C8 /* Main.storyboard */; };
 		86B770BC232C5284007C71C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B770BB232C5284007C71C8 /* Assets.xcassets */; };
 		86B770BF232C5284007C71C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B770BD232C5284007C71C8 /* LaunchScreen.storyboard */; };
+		86EF8694233ED45900E2E7A7 /* ContactListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EF8693233ED45900E2E7A7 /* ContactListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		869B9A792335AAF70003BC7D /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
-		869B9A7B2335ABBA0003BC7D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		86B770B1232C5282007C71C8 /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B770B4232C5282007C71C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B770B6232C5282007C71C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +23,7 @@
 		86B770BB232C5284007C71C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B770BE232C5284007C71C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86B770C0232C5284007C71C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86EF8693233ED45900E2E7A7 /* ContactListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +56,10 @@
 		86B770B3232C5282007C71C8 /* PhoneBook */ = {
 			isa = PBXGroup;
 			children = (
-				869B9A792335AAF70003BC7D /* MainTableView.swift */,
 				86B770B4232C5282007C71C8 /* AppDelegate.swift */,
 				86B770B6232C5282007C71C8 /* ViewController.swift */,
 				86B770B8232C5282007C71C8 /* Main.storyboard */,
-				869B9A7B2335ABBA0003BC7D /* MainViewController.swift */,
+				86EF8693233ED45900E2E7A7 /* ContactListTableViewController.swift */,
 				86B770BB232C5284007C71C8 /* Assets.xcassets */,
 				86B770BD232C5284007C71C8 /* LaunchScreen.storyboard */,
 				86B770C0232C5284007C71C8 /* Info.plist */,
@@ -142,9 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B770B7232C5282007C71C8 /* ViewController.swift in Sources */,
-				869B9A7A2335AAF70003BC7D /* MainTableView.swift in Sources */,
+				86EF8694233ED45900E2E7A7 /* ContactListTableViewController.swift in Sources */,
 				86B770B5232C5282007C71C8 /* AppDelegate.swift in Sources */,
-				869B9A7C2335ABBA0003BC7D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

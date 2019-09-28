@@ -1,14 +1,14 @@
 //
-//  MainTableView.swift
+//  ContactListController.swift
 //  PhoneBook
 //
-//  Created by pos on 20/09/2019.
+//  Created by pos on 27/09/2019.
 //  Copyright © 2019 br.com.ifsp.minguini. All rights reserved.
 //
 
 import UIKit
 
-class MainTableView: UITableViewController {
+class ContactListViewController: UITableViewController {
 
     var contacts : [String] = ["Matheus", "Luis", "Cleiton"]
     
@@ -26,13 +26,18 @@ class MainTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count;
     }
-   
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell_identifier = "contact_cell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
         cell.textLabel?.text = contacts[indexPath.row]
         
+        
+        cell.imageView?.layer.cornerRadius = 25;
+        cell.imageView?.clipsToBounds = true;
+        
         return cell;
     }
+
 }
