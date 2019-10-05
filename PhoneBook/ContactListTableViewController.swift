@@ -58,15 +58,15 @@ class ContactListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = UIView()
-        
-            let button = UIButton()
-            button.frame = CGRect(x: 20, y: 5, width: 300, height: 60)
-            button.setTitle("Lista de contatos", for: .normal)
-        
-            headerView.addSubview(button)
-            return headerView
-        
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//            let headerView = UIView()
+//
+//            let button = UIButton()
+//            button.frame = CGRect(x: 20, y: 5, width: 300, height: 60)
+//            button.setTitle("Lista de contatos", for: .normal)
+//
+//            headerView.addSubview(button)
+//            return headerView
+//
+//    }
 }
