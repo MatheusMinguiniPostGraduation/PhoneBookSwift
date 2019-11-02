@@ -7,17 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class ContactListTableViewController: UITableViewController {
 
-    var contacts : [String] = ["Matheus", "Luis", "Cleiton"]
-    
+    var contacts = [NSManagedObject]()
     
     override func viewDidLoad(){
         super.viewDidLoad();
         
+        contacts = retrieveDataFromCoreData()
+        
         let topButton = UIButton()
         self.tableView.tableHeaderView = topButton
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        contacts = retrieveDataFromCoreData()
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        contacts = retrieveDataFromCoreData()
+        self.tableView.reloadData()
     }
     
     //loading the table component
@@ -30,21 +42,25 @@ class ContactListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
+        var contacts = retrieveDataFromCoreData();
+        
         let cell_identifier = "contact_cell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
-        cell.textLabel?.text = contacts[indexPath.row]
-        cell.detailTextLabel?.text = "99706 - 3747"
-      
+        cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
+        cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
         
+     
         cell.imageView?.layer.cornerRadius = 25;
         cell.imageView?.clipsToBounds = true;
         
         return cell;
     }
     
+    
     //Its a overloaded class which helps to perform some actions as we select a cell in the grid
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -56,17 +72,24 @@ class ContactListTableViewController: UITableViewController {
         alert.addAction(alertAction)
         
         present(alert, animated: true, completion: nil)
-    }
+    }*/
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//            let headerView = UIView()
-//
-//            let button = UIButton()
-//            button.frame = CGRect(x: 20, y: 5, width: 300, height: 60)
-//            button.setTitle("Lista de contatos", for: .normal)
-//
-//            headerView.addSubview(button)
-//            return headerView
-//
-//    }
+    func retrieveDataFromCoreData() -> [NSManagedObject]{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Contato")
+        
+        var contactsFromCoreData = [NSManagedObject]()
+        do{
+            let result = try context.fetch(fetchRequest)
+            for data in result as! [NSManagedObject]{
+                contactsFromCoreData.append(data)
+            }
+        }catch{
+            print("Não foi possível recuperar os contatos salvos na base de dados")
+        }
+        
+        return contactsFromCoreData
+    }
 }

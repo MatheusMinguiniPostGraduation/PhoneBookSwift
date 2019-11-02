@@ -244,7 +244,11 @@
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="celular" destination="Kpb-cH-36g" id="nIm-ai-Ugj"/>
+                        <outlet property="ddd" destination="E1L-rG-qAw" id="6Os-jN-l0p"/>
+                        <outlet property="intimidade" destination="QAm-NP-2wi" id="qgD-QM-Hhe"/>
                         <outlet property="nome" destination="E5X-bY-QMN" id="LCY-Vx-MvV"/>
+                        <outlet property="pais" destination="wcV-iq-Ipl" id="h9N-Cl-eaO"/>
                         <outlet property="sobrenome" destination="8Z6-NJ-z8d" id="Cgx-Fb-57K"/>
                     </connections>
                 </viewController>
