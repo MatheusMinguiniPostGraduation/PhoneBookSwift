@@ -13,6 +13,7 @@ class ContactListTableViewController: UITableViewController {
 
     var contacts = [NSManagedObject]()
     
+
     override func viewDidLoad(){
         super.viewDidLoad();
         
@@ -41,38 +42,43 @@ class ContactListTableViewController: UITableViewController {
         return contacts.count;
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        var contacts = retrieveDataFromCoreData();
-        
-        let cell_identifier = "contact_cell"
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
-        cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
-        cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
-        
-     
-        cell.imageView?.layer.cornerRadius = 25;
-        cell.imageView?.clipsToBounds = true;
-        
-        return cell;
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            contacts = retrieveDataFromCoreData()
+            let contact = contacts[indexPath.row]
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            do{
+                    try managedContext.delete(contact)
+                    try managedContext.save()
+                    let alert = UIAlertController(title: "Alerta", message: "Contato removido com sucesso", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    self.tableView.reloadData()
+            }catch{
+                print("Failed")
+            }
+        }
+            
     }
     
-    
-    //Its a overloaded class which helps to perform some actions as we select a cell in the grid
-    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell_identifier = "contact_cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
+        contacts = retrieveDataFromCoreData();
         
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        
-        let alert = UIAlertController(title: "Mensagem",
-                                      message: "Você clicou no contato: " + contacts[indexPath.row],
-                                      preferredStyle: .alert)
-        
-        alert.addAction(alertAction)
-        
-        present(alert, animated: true, completion: nil)
-    }*/
+        if(contacts.count != 0){
+            cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
+            cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
+            
+            
+            cell.imageView?.layer.cornerRadius = 25;
+            cell.imageView?.clipsToBounds = true;
+        }
+       
+        return cell;
+    }
     
     func retrieveDataFromCoreData() -> [NSManagedObject]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -92,4 +98,7 @@ class ContactListTableViewController: UITableViewController {
         
         return contactsFromCoreData
     }
+
+    
+    
 }
