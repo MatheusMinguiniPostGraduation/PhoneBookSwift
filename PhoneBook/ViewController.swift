@@ -17,9 +17,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var ddd: UITextField!
     @IBOutlet weak var celular: UITextField!
     @IBOutlet weak var intimidade: UITextField!
+    
+    var contato : Contato!
+    var istoEdit: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+        if(contato != nil) {
+            nome.text = contato.nome
+            sobrenome.text = contato.sobrenome
+            intimidade.text = String(contato.intimidade)
+            
+            self.istoEdit = true
+        }
+        
         
         //Conexao com o Banco remoto do FireBase
         let remoteDataBase = Database.database().reference()
@@ -51,9 +64,7 @@ class ViewController: UIViewController {
         
         do {
             try
-                
                 context.save()
-            
                 createCustumeMessage(message: "O contato " + enteredName + " foi salvo com sucesso na base local e remota")
             } catch{
                 createCustumeMessage(message: "O contato " + enteredName + " NÃO foi salvo. Por favor, retente em alguns minutos.")

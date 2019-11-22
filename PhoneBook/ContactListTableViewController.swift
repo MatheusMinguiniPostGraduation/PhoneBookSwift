@@ -11,9 +11,9 @@ import CoreData
 
 class ContactListTableViewController: UITableViewController {
 
-    var contacts = [NSManagedObject]()
+    var contacts = [Contato]()
+    var contactTouched : Contato!
     
-
     override func viewDidLoad(){
         super.viewDidLoad();
         
@@ -50,12 +50,15 @@ class ContactListTableViewController: UITableViewController {
             let managedContext = appDelegate.persistentContainer.viewContext
             
             do{
-                    try managedContext.delete(contact)
+                    managedContext.delete(contact)
                     try managedContext.save()
+                    contacts = retrieveDataFromCoreData();
+                    self.tableView.reloadData()
+                
                     let alert = UIAlertController(title: "Alerta", message: "Contato removido com sucesso", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true)
-                    self.tableView.reloadData()
+                
             }catch{
                 print("Failed")
             }
@@ -66,30 +69,25 @@ class ContactListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell_identifier = "contact_cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
-        contacts = retrieveDataFromCoreData();
         
-        if(contacts.count != 0){
-            cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
-            cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
-            
-            
-            cell.imageView?.layer.cornerRadius = 25;
-            cell.imageView?.clipsToBounds = true;
-        }
-       
+        cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
+        cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
+        cell.imageView?.layer.cornerRadius = 25;
+        cell.imageView?.clipsToBounds = true;
+        
         return cell;
     }
     
-    func retrieveDataFromCoreData() -> [NSManagedObject]{
+    func retrieveDataFromCoreData() -> [Contato]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Contato")
         
-        var contactsFromCoreData = [NSManagedObject]()
+        var contactsFromCoreData = [Contato]()
         do{
             let result = try context.fetch(fetchRequest)
-            for data in result as! [NSManagedObject]{
+            for data in result as! [Contato]{
                 contactsFromCoreData.append(data)
             }
         }catch{
@@ -98,7 +96,20 @@ class ContactListTableViewController: UITableViewController {
         
         return contactsFromCoreData
     }
-
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "editar") {
+            let contatoViewController : ViewController = segue.destination as! ViewController
+            
+            print(self.contactTouched?.nome)
+            contatoViewController.contato = self.contactTouched
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.contactTouched = contacts[indexPath.row]
+        self.performSegue(withIdentifier: "editar", sender: self)
+    }
 }

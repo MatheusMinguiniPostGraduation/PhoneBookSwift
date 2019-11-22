@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.28235294119999998" green="0.61568627450000002" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contact_cell" textLabel="erP-cn-BaT" detailTextLabel="MDp-Fa-Xg7" style="IBUITableViewCellStyleSubtitle" id="iJ1-Fd-NOn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="contact_cell" textLabel="erP-cn-BaT" detailTextLabel="MDp-Fa-Xg7" style="IBUITableViewCellStyleSubtitle" id="iJ1-Fd-NOn">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iJ1-Fd-NOn" id="wIy-Ry-5Ms">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="erP-cn-BaT">
@@ -44,6 +44,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.28235294119999998" green="0.61568627450000002" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.28235294119999998" green="0.61568627450000002" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="editar" id="mcw-lP-njp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -58,7 +61,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Novo"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="9pe-BE-Xr2"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="inserir" id="9pe-BE-Xr2"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -242,6 +245,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="yse-WM-fkv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="celular" destination="Kpb-cH-36g" id="nIm-ai-Ugj"/>
@@ -275,4 +279,7 @@
             <point key="canvasLocation" x="1256.8" y="185.75712143928038"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mcw-lP-njp"/>
+    </inferredMetricsTieBreakers>
 </document>
