@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G8030" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Contato" representedClassName="Contato" syncable="YES" codeGenerationType="class">
+        <attribute name="celular" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ddd" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="intimidade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numero" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pais" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sobrenome" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contato" positionX="-54" positionY="-9" width="128" height="120"/>
+        <element name="Contato" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>

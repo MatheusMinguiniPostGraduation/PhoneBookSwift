@@ -23,11 +23,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(contato != nil) {
-            nome.text = contato.nome
-            sobrenome.text = contato.sobrenome
-            intimidade.text = String(contato.intimidade)
-            celular.text = contato.numero
+        if(self.contato != nil) {
+            nome.text = self.contato.nome
+            sobrenome.text = self.contato.sobrenome
+            pais.text = self.contato.pais
+            ddd.text = self.contato.ddd
+            celular.text = self.contato.celular
+            intimidade.text = String(self.contato.intimidade)
+         
             self.isEditar = true
         }
     }
@@ -84,12 +87,13 @@ class ViewController: UIViewController {
     }
     
     func setContatoValues(contatoBD : NSManagedObject){
-        let celular_completo = buildCelularCompleto()
         let intimidade = buildIntimidade()
         
         contatoBD.setValue(nome.text, forKey:"nome")
         contatoBD.setValue(sobrenome.text, forKey: "sobrenome")
-        contatoBD.setValue(celular_completo, forKey: "numero")
+        contatoBD.setValue(pais.text, forKey: "pais")
+        contatoBD.setValue(ddd.text, forKey: "ddd")
+        contatoBD.setValue(celular.text, forKey: "celular")
         contatoBD.setValue(intimidade, forKey: "intimidade")
     }
     
@@ -99,7 +103,7 @@ class ViewController: UIViewController {
             action in (self.navigationController?.popToRootViewController(animated: true));
         }
         
-        let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Pronto", message: message, preferredStyle: .alert)
         
         alert.addAction(alertAction)
         

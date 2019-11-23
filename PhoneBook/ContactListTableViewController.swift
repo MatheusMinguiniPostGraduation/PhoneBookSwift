@@ -33,7 +33,6 @@ class ContactListTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    //loading the table component
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
@@ -55,7 +54,7 @@ class ContactListTableViewController: UITableViewController {
                     contacts = retrieveDataFromCoreData();
                     self.tableView.reloadData()
                 
-                    let alert = UIAlertController(title: "Alerta", message: "Contato removido com sucesso", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Sucesso", message: "Contato removido", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 
@@ -70,12 +69,35 @@ class ContactListTableViewController: UITableViewController {
         let cell_identifier = "contact_cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath)
         
+        let celular = buildCelularCompleto(indexPath: indexPath);
+        
         cell.textLabel?.text = contacts[indexPath.row].value(forKey: "nome") as? String
-        cell.detailTextLabel?.text = contacts[indexPath.row].value(forKey: "numero") as? String
+        cell.detailTextLabel?.text = celular
         cell.imageView?.layer.cornerRadius = 25;
         cell.imageView?.clipsToBounds = true;
         
         return cell;
+    }
+    
+    func buildCelularCompleto(indexPath: IndexPath) -> String{
+        var retorno : String = ""
+        let codigoPais = self.contacts[indexPath.row].value(forKey: "pais") as? String
+        let ddd = self.contacts[indexPath.row].value(forKey: "ddd") as? String
+        let celular = self.contacts[indexPath.row].value(forKey: "celular") as? String
+        
+        if(codigoPais != nil ){
+            retorno.append(codigoPais! + " ")
+        }
+        
+        if(ddd != nil){
+            retorno.append(ddd! + " ")
+        }
+        
+        if(celular != nil){
+            retorno.append(celular! + " ")
+        }
+        
+        return retorno
     }
     
     func retrieveDataFromCoreData() -> [Contato]{
